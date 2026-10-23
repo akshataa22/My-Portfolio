@@ -118,8 +118,8 @@ _These highlights reflect my project experience and ongoing engineering work. Ad
 ## 📊 GitHub Activity
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&hide_border=true&theme=tokyonight" alt="GitHub statistics" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&hide_border=true&theme=tokyonight" alt="Most used languages" />
+  <img src="https://github-readme-stats.vercel.app/api?username=akshataa22&show_icons=true&hide_border=true&theme=tokyonight" alt="GitHub statistics" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=akshataa22&layout=compact&hide_border=true&theme=tokyonight" alt="Most used languages" />
 </p>
 
 ---
@@ -135,5 +135,5 @@ I'm always interested in discussing software development, interesting projects, 
 </p>
 
 <p align="center">
-  <sub>Designed with curiosity, built with code, and improved one commit at a time. ✦</sub>
+  <sub>Thanks for stopping by! 👋</sub>
 </p>
