@@ -124,22 +124,26 @@ _These highlights reflect my project experience and ongoing engineering work. Ad
 
 ---
 
+---
+
 ## 🤝 Let's Connect
 
 I'm always interested in discussing software development, interesting projects, engineering challenges, and opportunities to learn and grow.
 
 <p align="center">
-  <a href="www.linkedin.com/in/akshatadhanawade">LinkedIn</a> ·
-  <a href="##">Portfolio</a> ·
-  <a href="mailto:dhanawadeakshata53@gmail.com>Email</a>
+  <a href="https://www.linkedin.com/in/akshatadhanawade">LinkedIn</a>
+  &nbsp;·&nbsp;
+  <a href="#">Portfolio</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:dhanawadeakshata53@gmail.com">Email</a>
 </p>
 
 ---
 
 <p align="center">
-  <sub>Thanks for stopping by! 👋</sub>
-</p>
-
-<p align="center">
-  <sub>Designed & built by Akshata Dhanawade · © 2026</sub>
+  <sub>
+    Crafted with <span>♥</span> and curiosity by <strong>Akshata Dhanawade</strong>
+  </sub>
+  <br/>
+  <sub>© 2026 · Building, learning, and improving.</sub>
 </p>
