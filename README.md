@@ -134,6 +134,12 @@ I'm always interested in discussing software development, interesting projects, 
   <a href="mailto:dhanawadeakshata53@gmail.com>Email</a>
 </p>
 
+---
+
 <p align="center">
   <sub>Thanks for stopping by! 👋</sub>
+</p>
+
+<p align="center">
+  <sub>Designed & built by Akshata Dhanawade · © 2026</sub>
 </p>
