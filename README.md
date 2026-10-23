@@ -3,10 +3,10 @@
 ### Full Stack Developer · Building thoughtful interfaces and reliable backend systems.
 
 <p align="center">
-  <a href="##">
+  <a href="#">
     <img src="https://img.shields.io/badge/🌐_Portfolio-Visit-8B5CF6?style=for-the-badge" alt="Portfolio" />
   </a>
-  <a href="www.linkedin.com/in/akshatadhanawade">
+  <a href="https://www.linkedin.com/in/akshatadhanawade">
     <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
   <a href="https://drive.google.com/file/d/15zRk7SPZC-1siqDADNUOKpASMW7xgm0G/view?usp=sharing">
@@ -124,8 +124,6 @@ _These highlights reflect my project experience and ongoing engineering work. Ad
 
 ---
 
----
-
 ## 🤝 Let's Connect
 
 I'm always interested in discussing software development, interesting projects, engineering challenges, and opportunities to learn and grow.
@@ -140,10 +138,28 @@ I'm always interested in discussing software development, interesting projects, 
 
 ---
 
+## 🚀 Running Locally
+
+Follow these steps to run the portfolio website on your local machine.
+
+```bash
+# Clone the repository
+git clone https://github.com/akshataa22/Portfolio-Website.git
+cd Portfolio-Website
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser and you're in. 🎉
+
+---
+
 <p align="center">
-  <sub>
-    Crafted with <span>♥</span> and curiosity by <strong>Akshata Dhanawade</strong>
-  </sub>
-  <br/>
+  <sub>Crafted with ♥ and curiosity by <strong>Akshata Dhanawade</strong></sub>
+  <br />
   <sub>© 2026 · Building, learning, and improving.</sub>
 </p>
