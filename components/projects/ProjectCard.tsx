@@ -1,13 +1,11 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
-import { AnimatePresence, useMotionValue, useSpring, useTransform } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
-import { useId, useState, type PointerEvent } from "react";
+import { useId, useState } from "react";
 import { TagPill } from "@/components/ui/TagPill";
 import type { Project, ProjectCategory } from "@/data/types";
-
-const MAX_TILT_DEGREES = 5;
 
 const previewBackgrounds: Record<ProjectCategory, string> = {
   Fintech: "bg-sage/20",
@@ -18,34 +16,15 @@ const previewBackgrounds: Record<ProjectCategory, string> = {
 export function ProjectCard({ project }: { project: Project }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const buildNotesId = useId();
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const rotateX = useSpring(useTransform(pointerY, [-0.5, 0.5], [MAX_TILT_DEGREES, -MAX_TILT_DEGREES]));
-  const rotateY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-MAX_TILT_DEGREES, MAX_TILT_DEGREES]));
-
-  function handlePointerMove(event: PointerEvent<HTMLElement>) {
-    if (event.pointerType !== "mouse") return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
-    pointerY.set((event.clientY - bounds.top) / bounds.height - 0.5);
-  }
-
-  function resetTilt() {
-    pointerX.set(0);
-    pointerY.set(0);
-  }
 
   return (
     <m.article
-      onPointerMove={handlePointerMove}
-      onPointerLeave={resetTilt}
-      style={{ rotateX, rotateY }}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-[4px_4px_0_0_var(--line)] transform-3d"
+      className="flex flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-[4px_4px_0_0_var(--line)]"
     >
       <div className={`border-b border-line ${previewBackgrounds[project.category]}`}>
         <div className="flex items-center gap-1.5 border-b border-line px-4 py-2" aria-hidden>

@@ -10,7 +10,7 @@ export function ProjectsSection() {
         id="work-heading"
         eyebrow="sneak peek of my work"
         title="Selected work"
-        description="Production platforms I've helped build across fintech, ed-tech and commerce. Hover to tilt, tap “how I built it” for the nerdy bits."
+        description="Production platforms I've helped build across fintech, ed-tech and commerce. Tap “how I built it” for the nerdy bits."
       />
       <ProjectsGallery projects={projects} categories={projectCategories} />
     </SectionContainer>

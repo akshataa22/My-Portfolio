@@ -27,7 +27,7 @@ export function ProjectsGallery({ projects, categories }: ProjectsGalleryProps) 
           </FilterChip>
         ))}
       </div>
-      <div className="grid gap-6 perspective-distant md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
           {visibleProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
