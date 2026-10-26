@@ -13,16 +13,7 @@ type Simulation = {
   pills: Body[];
 };
 
-const pillColors = [
-  "bg-rose-200",
-  "bg-amber-200",
-  "bg-violet-200",
-  "bg-emerald-200",
-  "bg-orange-200",
-  "bg-sky-200",
-  "bg-pink-200",
-  "bg-lime-200",
-];
+const pillColors = ["bg-accent/30", "bg-coffee/40", "bg-sage/30", "bg-sky/30", "bg-surface-strong"];
 
 const WALL_THICKNESS = 200;
 const FRAME_MS = 1000 / 60;
@@ -203,10 +194,10 @@ export function BucketListBoard({ items }: { items: BucketListItem[] }) {
             }}
             data-cursor="grab"
             className={cn(
-              "touch-none rounded-full px-5 py-2.5 font-medium whitespace-nowrap text-stone-900 select-none",
+              "touch-none rounded-full px-5 py-2.5 font-medium whitespace-nowrap text-ink select-none",
               "group-data-simulated:absolute group-data-simulated:top-0 group-data-simulated:left-0",
               pillColors[index % pillColors.length],
-              item.isDone && "line-through decoration-2",
+              item.isDone && "text-muted line-through decoration-2",
             )}
           >
             {item.label}
