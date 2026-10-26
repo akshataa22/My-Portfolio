@@ -1,0 +1,56 @@
+---
+alwaysApply: true
+---
+
+# Project Context
+This is a personal portfolio website. Next.js App Router, TypeScript, Tailwind CSS, Framer Motion.
+Goal: visually impressive, performant, clean code that looks good in a code review.
+
+# Code Style
+- Write clean, readable code — a recruiter will read it.
+- Use descriptive component names (e.g., ProjectCard, SkillBadge, not Card, Badge).
+- Keep components small and focused. One component = one responsibility.
+- Use named exports. PascalCase for component files.
+- No unused imports, variables, or dead code.
+- Prefer composition over configuration.
+
+# Next.js / React
+- App Router only. No pages/ directory.
+- Default to Server Components. Only add "use client" where needed (animations, interactivity).
+- Use next/image for all images with proper alt text and sizes.
+- Use next/link for internal navigation.
+- Keep layouts minimal — put shared UI in components, not layout.tsx.
+
+# Styling (Tailwind)
+- Tailwind only. No CSS modules, no styled-components, no inline styles.
+- Mobile-first. Test at 375px, 768px, 1280px, 1440px.
+- Use consistent spacing scale (Tailwind defaults). No arbitrary values unless necessary.
+- Dark mode: use `dark:` variants. Ensure good contrast in both modes.
+- Reuse Tailwind classes via small wrapper components, not by copy-pasting.
+
+# Animations (Framer Motion)
+- Use Framer Motion for scroll-triggered and interactive animations.
+- Keep animations subtle and performant (transform + opacity only, avoid layout animations).
+- Respect `prefers-reduced-motion` — disable or reduce animations.
+- Use `whileInView` for scroll animations, `whileHover`/`whileTap` for interactions.
+- Stagger children for lists (projects, skills) with `variants`.
+- Never animate on the initial page load above the fold (hurts LCP).
+
+# Performance
+- Target Lighthouse 95+ (Performance, Accessibility, Best Practices, SEO).
+- Lazy-load below-the-fold sections with next/dynamic.
+- Preload critical fonts. Use `next/font` for all fonts.
+- Keep the initial JS bundle small. Don't import Framer Motion at the top level — import specific functions.
+
+# Accessibility
+- Semantic HTML: proper heading hierarchy (one h1, h2 for sections).
+- All interactive elements must be keyboard accessible.
+- Images must have meaningful alt text.
+- Color contrast must meet WCAG AA (4.5:1 for text).
+
+# Workflow
+- Make the smallest useful change. Don't rewrite unrelated code.
+- Don't add dependencies unless clearly needed.
+- Follow existing patterns in the codebase before creating new ones.
+- If I ask for a new section/component, show me the plan before implementing.
+- After implementing, tell me what to check in the browser.   
