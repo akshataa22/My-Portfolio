@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Caveat, Fraunces, Geist, Geist_Mono } from "next/font/google";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { profile } from "@/data/profile";
@@ -74,6 +75,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="flex min-h-full flex-col font-sans">
         <MotionProvider>{children}</MotionProvider>
+        <Analytics />
       </body>
     </html>
   );

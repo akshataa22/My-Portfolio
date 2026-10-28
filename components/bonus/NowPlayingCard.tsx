@@ -7,40 +7,64 @@ import { cn } from "@/lib/cn";
 import { createSpotifyController, type SpotifyEmbedController } from "@/lib/spotifyIframeApi";
 
 const EQUALIZER_BARS = ["animate-equalizer-1", "animate-equalizer-2", "animate-equalizer-3", "animate-equalizer-4"];
-const EMBED_HEIGHT = 80;
+const EMBED_HEIGHT = 152;
 
-type EmbedStatus = "idle" | "loading" | "ready" | "failed";
+type EmbedStatus = "loading" | "ready" | "failed";
 
 export function NowPlayingCard({ track }: { track: NowPlayingTrack }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [embedStatus, setEmbedStatus] = useState<EmbedStatus>("idle");
+  const [embedStatus, setEmbedStatus] = useState<EmbedStatus>("loading");
   const embedContainerRef = useRef<HTMLDivElement>(null);
   const controllerRef = useRef<SpotifyEmbedController | null>(null);
+  const hasStartedRef = useRef(false);
   const spotifyTrackUrl = `https://open.spotify.com/track/${track.spotifyTrackId}`;
 
-  useEffect(() => () => controllerRef.current?.destroy(), []);
+  useEffect(() => {
+    const container = embedContainerRef.current;
+    if (!container) return;
 
-  async function startSpotifyEmbed(container: HTMLDivElement) {
-    setEmbedStatus("loading");
-    try {
-      const controller = await createSpotifyController(container, track.spotifyTrackId, EMBED_HEIGHT);
-      controllerRef.current = controller;
-      controller.addListener("playback_update", ({ data }) => setIsPlaying(!data.isPaused));
-      controller.addListener("ready", () => {
-        setEmbedStatus("ready");
-        controller.play();
+    let isCancelled = false;
+
+    createSpotifyController(container, track.spotifyTrackId, EMBED_HEIGHT)
+      .then((controller) => {
+        if (isCancelled) {
+          controller.destroy();
+          return;
+        }
+
+        controllerRef.current = controller;
+        controller.addListener("playback_update", ({ data }) => {
+          setIsPlaying(!data.isPaused);
+          if (data.duration > 0 && data.position >= data.duration - 500) hasStartedRef.current = false;
+        });
+        controller.addListener("ready", () => setEmbedStatus("ready"));
+      })
+      .catch(() => {
+        if (!isCancelled) setEmbedStatus("failed");
       });
-    } catch {
-      setEmbedStatus("failed");
-    }
-  }
+
+    return () => {
+      isCancelled = true;
+      controllerRef.current?.destroy();
+      controllerRef.current = null;
+    };
+  }, [track.spotifyTrackId]);
 
   function togglePlayback() {
-    if (controllerRef.current) {
-      controllerRef.current.togglePlay();
-    } else if (embedStatus === "idle" && embedContainerRef.current) {
-      void startSpotifyEmbed(embedContainerRef.current);
+    const controller = controllerRef.current;
+    if (!controller) return;
+
+    if (isPlaying) {
+      controller.pause();
+      return;
     }
+
+    if (!hasStartedRef.current) {
+      controller.loadEntity(`spotify:track:${track.spotifyTrackId}`, false, 0);
+      hasStartedRef.current = true;
+    }
+
+    controller.play();
   }
 
   return (
@@ -64,7 +88,7 @@ export function NowPlayingCard({ track }: { track: NowPlayingTrack }) {
         <button
           type="button"
           onClick={togglePlayback}
-          disabled={embedStatus === "failed"}
+          disabled={embedStatus !== "ready"}
           aria-busy={embedStatus === "loading"}
           aria-pressed={isPlaying}
           aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
@@ -91,21 +115,18 @@ export function NowPlayingCard({ track }: { track: NowPlayingTrack }) {
         <p className="font-hand text-lg text-accent">{track.note}</p>
       </div>
 
-      <div
-        ref={embedContainerRef}
-        className={cn("w-full overflow-hidden rounded-xl", embedStatus === "ready" ? "h-20" : "h-0")}
-      />
-
-      {embedStatus !== "ready" && (
+      {embedStatus === "failed" ? (
         <a
           href={spotifyTrackUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-sm font-medium text-ink underline underline-offset-4"
         >
-          {embedStatus === "failed" ? "Couldn't load the player, open in Spotify" : "Listen on Spotify"}
+          Couldn&apos;t load the player, open in Spotify
           <ArrowUpRight className="size-4" aria-hidden />
         </a>
+      ) : (
+        <div ref={embedContainerRef} className="h-[152px] w-full overflow-hidden rounded-xl" />
       )}
     </div>
   );

@@ -4,7 +4,9 @@ type SpotifyPlaybackUpdate = {
 
 export type SpotifyEmbedController = {
   play: () => void;
+  pause: () => void;
   togglePlay: () => void;
+  loadEntity: (spotifyUriOrUrl: string, preferVideo?: boolean, startAt?: number) => void;
   destroy: () => void;
   addListener(event: "ready", callback: () => void): void;
   addListener(event: "playback_update", callback: (update: SpotifyPlaybackUpdate) => void): void;
